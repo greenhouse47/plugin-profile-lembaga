@@ -242,22 +242,22 @@ if ( is_single() ) {
 // checks if the file exists in the theme first,
 // otherwise serve the file from the plugin
 if ( $theme_file = locate_template( array
-( 'single-profile.php' ) ) ) {
+( 'single-lembaga.php' ) ) ) {
 $template_path = $theme_file;
 } else {
 $template_path = plugin_dir_path( __FILE__ ) .
-'/single-profile.php';
+'/single-lembaga.php';
 }
 }
 if ( is_archive() ) {
 // checks if the file exists in the theme first,
 // otherwise serve the file from the plugin
 if ( $theme_file = locate_template( array
-( 'archive-profile.php' ) ) ) {
+( 'archive-lembaga.php' ) ) ) {
 $template_path = $theme_file;
 } else {
 $template_path = plugin_dir_path( __FILE__ ) .
-'/archive-profile.php';
+'/archive-lembaga.php';
 }
 }
 }
