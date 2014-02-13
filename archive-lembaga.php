@@ -61,7 +61,7 @@ get_header(); ?>
                                 );
                             }
                         } else {
-                            _e('Arsip Profile Pengurus', 'bootstrapwp');
+                            _e('Arsip Profile Lembaga', 'bootstrapwp');
                         }
                         ?></h2>
                 </header>
@@ -101,5 +101,5 @@ get_header(); ?>
             <?php endif; ?>
         </div>
 
-    <?php get_sidebar('pengurus'); ?>
+    <?php get_sidebar('office'); ?>
     <?php get_footer(); ?>
