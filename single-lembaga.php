@@ -2,7 +2,7 @@
 /*
 * Single Template Profile Lembaga
 * Author: Albert Sukmono
-* Description: "Template Plugin Lembaga" for view content post profile
+* Description: "Single Template Plugin Lembaga" for view content post profile
 */
 
 get_header(); ?>
