@@ -1,4 +1,4 @@
-<h3>Plugin "Staff" untuk struktur profile pejabat/staff organisasi</h3>
+<h3>Plugin "Lembaga" untuk struktur profile Lembaga/ Company Profile</h3>
 
 Plugin ini digunakan untuk menambahkan custom field post sendiri untuk management post profile lembaga. Ada beberapa field kosong dalam bentuk meta box untuk default isian profile dan biodata.
 
