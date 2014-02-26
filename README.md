@@ -1,5 +1,21 @@
-#Plugin Profile Lembaga Organisasi
+<h3>Plugin "Staff" untuk struktur profile pejabat/staff organisasi</h3>
 
-Plugin wordpress untuk menambahkan fitur custom field post dan metabox pada tiap post sebagai profile lembaga dan tambahan tambahan template untuk tampilan di frontend. Template bawaan plugin bisa dicopy dan ditaruh pada folder theme yang sedang digunakan. Template bawaan dari plugin ada dua pilihan yaitu template untuk single post dan archive (category).
+Plugin ini digunakan untuk menambahkan custom field post sendiri untuk management post profile lembaga. Ada beberapa field kosong dalam bentuk meta box untuk default isian profile dan biodata.
 
-Plugin ini gunakan untuk membuat post berupa profile sebuah lembaga yang ada pada struktur sebuah organisasi. Untuk petunjuk penginstallan Anda cukup mendownload plugin ini dalam bentuk .zip dan upload pada dashboard website Anda. Di Dalam plugin ini ada 3 file yang meliputi file functions lembaga.php dan 2 template single-lembaga.php dan archive-lembaga.php, dua file template ini bisa Anda copy dan taruh pada folder themes yang sekarang Anda aktifkan pada website Anda.
+Fungsi Plugin "Lembaga" ini meliputi beberapa fungsi antara lain:
+<ol>
+<li>Managament Post Type Khusus Profile Lembaga</li>
+<li>Category Post Profile</li>
+<li>Featured Image (Potho Profile)</li>
+<li>Template Archive dan Single Post</li>
+</ol>
+
+<h3>Pentunjuk Penginstalaan</h3>
+
+Download file plugin "lembaga" ini dalam bentuk .zip rubah file nama file.zip tersebut dengan nama <code>lembaga.zip</code> lalu upload lewat dashboard anda pada pilihan plugin dan add new plugin upload.
+
+Plugin ini khusus difungsikan untuk menambahkan fitur fungsi dan fasilitas untuk menagement data profile pengurus pada theme stadart Cabang HMI. Untuk themes selain themes standart HMI Cabang masih belum pada tahap test/ dicoba lebih lanjut terhadap kompatible tidaknya.
+
+Bahan script pembuatan plugin pengurus ini beberapa diambil dari <a href="http://code.tutsplus.com/">Code Tutsplus.com</a>
+
+Special thank for <a href="http://hub.tutsplus.com/authors/soumitra-chakraborty">soumitra-chakraborty</a>
