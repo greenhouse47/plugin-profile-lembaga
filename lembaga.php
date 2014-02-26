@@ -2,7 +2,7 @@
 /*
 Plugin Name: Profile Lembaga
 Plugin URI: http://www.greenboxindonesia.com/
-Description: Create profile lembaga with custom field post and metabox
+Description: Management Post Type Biodata & Profile Lembaga
 Version: 1.0
 Author: Albert Sukmono
 Author URI: http://www.albert.sukmono.web.id
@@ -30,44 +30,82 @@ array(
 	'No Lembaga found in Trash',
 	'parent' => 'Parent Lembaga'
 	),
-	
+
 	'public' => true,
 	'publicly_queryable' => true,
-	'rewrite' => true,
+	'rewrite' => array( 'slug' => 'lembaga','with_front' => false, 'hierarchical' => true),
 	'show_ui' => true,
 	'query_var' => true,
 	'capability_type' => 'post',
-	'menu_position' => 10,
-	'supports' => array( 'title', 'editor', 'comments',	'thumbnail',  ),
-	'taxonomies' => array( 'category', 'post_tag' ),
-	'hierarchical' => true,
+	'menu_position' => 20,
+	'supports' => array( 'title', 'editor', 'comments',	'thumbnail' ),
+	'taxonomies' => array( 'lembaga_archive'),
 	'register_meta_box_cb' => 'lembaga_meta_box',
 	'menu_icon' => plugins_url( 'images/favicon.png', __FILE__ ),
 	'has_archive' => true	
 )
 );
+flush_rewrite_rules();
 }
 
-add_action( 'admin_init', 'my_admin' );
+/*
+ * create taxonomy
+ */
+// hook into the init action and call create_lembaga_taxonomies when it fires
+add_action( 'init', 'lembaga_taxonomies', 0 );
+// create for the post type "lembaga"
+function lembaga_taxonomies() {
+    $labels = array(
+        'name'              => _x( 'Lembaga Categories', 'taxonomy general name' ),
+        'singular_name'     => _x( 'Lembaga Category', 'taxonomy singular name' ),
+        'search_items'      => __( 'Search Categories' ),
+        'all_items'         => __( 'All Categories' ),
+        'parent_item'       => __( 'Parent Category' ),
+        'parent_item_colon' => __( 'Parent Category:' ),
+        'edit_item'         => __( 'Edit Category' ),
+        'update_item'       => __( 'Update Category' ),
+        'add_new_item'      => __( 'Add New Category' ),
+        'new_item_name'     => __( 'New Category Name' ),
+        'menu_name'         => __( 'Categories' ),
+    );
 
-function my_admin() {
+    $args = array(
+        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'labels'            => $labels,
+        'show_ui'           => true,
+		'show_in_nav_menus' => true,
+		'publicly_queryable' => true,
+		'exclude_from_search' => false,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite' 			=> array( 'slug' => 'lembaga_archive', 'with_front' => true ),
+		'has_archive' 		=> true
+    );
+
+    register_taxonomy( 'lembaga_categories', array( 'lembaga' ), $args );
+}
+/*
+ * create metabox
+ */
+add_action( 'admin_init', 'lembaga_admin' );
+
+function lembaga_admin() {
 add_meta_box( 
 	'lembaga_meta_box',
-	'Lembaga Details',
+	'lembaga Details',
 	'display_lembaga_meta_box',
 	'lembaga', 'normal', 'high' 
 	);
 }
 
 function display_lembaga_meta_box( $lembaga ) {
-// metabox show on each post
+// metabox list
 $nama = esc_html( get_post_meta( $lembaga->ID, 'nama', true ) );
 $tahun_jabatan = esc_html( get_post_meta( $lembaga->ID, 'tahun_jabatan', true ) );
 $universitas = esc_html( get_post_meta( $lembaga->ID, 'universitas', true ) );
 $jurusan = esc_html( get_post_meta( $lembaga->ID, 'jurusan', true ) );
 $angkatan = esc_html( get_post_meta( $lembaga->ID, 'angkatan', true ) );
 $komisariat = esc_html( get_post_meta( $lembaga->ID, 'komisariat', true ) );
-$kota_asal = esc_html( get_post_meta( $lembaga->ID, 'kota_asal', true ) );
 $alamat_sekarang = esc_html( get_post_meta( $lembaga->ID, 'alamat_sekarang', true ) );
 $kontak = esc_html( get_post_meta( $lembaga->ID, 'kontak', true ) );
 $email = esc_html( get_post_meta( $lembaga->ID, 'email', true ) );
@@ -79,7 +117,7 @@ $user_rating = intval( get_post_meta( $lembaga->ID, 'user_rating', true ) );
 ?>
 <table>
 	<tr>
-	<td style="width: 100%">Nama Lengkap</td>
+	<td style="width: 100%">Nama Ketua</td>
 	<td><input type="text" size="80" name="lembaga_nama" value="<?php echo $nama; ?>" /></td>
 	</tr>
 	<tr>
@@ -103,15 +141,11 @@ $user_rating = intval( get_post_meta( $lembaga->ID, 'user_rating', true ) );
 	<td><input type="text" size="80" name="lembaga_komisariat" value="<?php echo $komisariat; ?>" /></td>
 	</tr>
 	<tr>
-	<td style="width: 100%">Kota Asal</td>
-	<td><input type="text" size="80" name="lembaga_kota_asal" value="<?php echo $kota_asal; ?>" /></td>
-	</tr>
-	<tr>
-	<td style="width: 100%">Alamat Sakarang</td>
+	<td style="width: 100%">Alamat Kantor</td>
 	<td><input type="text" size="80" name="lembaga_alamat_sekarang" value="<?php echo $alamat_sekarang; ?>" /></td>
 	</tr>
 	<tr>
-	<td style="width: 100%">Kontak/ HP</td>
+	<td style="width: 100%">Kontak/ Telp/ HP</td>
 	<td><input type="text" size="80" name="lembaga_kontak" value="<?php echo $kontak; ?>" /></td>
 	</tr>
 	<tr>
@@ -188,11 +222,6 @@ $_POST['lembaga_komisariat'] != '' ) {
 update_post_meta( $lembaga_id, 'komisariat',
 $_POST['lembaga_komisariat'] );
 }// Field komisariat
-if ( isset( $_POST['lembaga_kota_asal'] ) &&
-$_POST['lembaga_kota_asal'] != '' ) {
-update_post_meta( $lembaga_id, 'kota_asal',
-$_POST['lembaga_kota_asal'] );
-}// Field kota asal
 if ( isset( $_POST['lembaga_alamat_sekarang'] ) &&
 $_POST['lembaga_alamat_sekarang'] != '' ) {
 update_post_meta( $lembaga_id, 'alamat_sekarang',
@@ -233,10 +262,10 @@ $_POST['lembaga_rating'] );
 }
 
 add_filter( 'template_include',
-'include_template_function', 1 );
+'including_template_function', 1 );
 
 // Load Template from themes
-function include_template_function( $template_path ) {
+function including_template_function( $template_path ) {
 if ( get_post_type() == 'lembaga' ) {
 if ( is_single() ) {
 // checks if the file exists in the theme first,
