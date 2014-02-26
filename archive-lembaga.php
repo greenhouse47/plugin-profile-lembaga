@@ -1,10 +1,10 @@
 <?php
-/**
- * The template for displaying Archive pages.
- *
- * @package WordPress
- * @subpackage Bootstrap
- */
+/*
+* Archive Template Archive Lembaga
+* Author: Albert Sukmono
+* Description: "Template Archive Plugin Lembaga" for view content post profile
+*/
+
 get_header(); ?>
 
     <?php if (have_posts()) :
@@ -14,9 +14,9 @@ get_header(); ?>
     <div class="container">
         <div class="row">
             <div class="span12">
-                <?php if (function_exists('bootstrapwp_breadcrumbs')) {
-                bootstrapwp_breadcrumbs();
-            } ?>
+                <?php if (function_exists('bootstrapwp_breadcrumbs_staff')) {
+                bootstrapwp_breadcrumbs_staff();
+                } ?>
             </div>
         </div>
 
@@ -61,7 +61,7 @@ get_header(); ?>
                                 );
                             }
                         } else {
-                            _e('Arsip Profile Lembaga', 'bootstrapwp');
+                            _e('Arsip Profil Lembaga', 'bootstrapwp');
                         }
                         ?></h2>
                 </header>
@@ -101,5 +101,5 @@ get_header(); ?>
             <?php endif; ?>
         </div>
 
-    <?php get_sidebar('office'); ?>
-    <?php get_footer(); ?>
+<?php get_sidebar('office'); ?>
+<?php get_footer(); ?>
