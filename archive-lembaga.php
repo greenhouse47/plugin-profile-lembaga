@@ -1,8 +1,8 @@
 <?php
 /*
-* Archive Template Archive Lembaga
+* Archive Template Lembaga
 * Author: Albert Sukmono
-* Description: "Template Archive Plugin Lembaga" for view content post profile
+* Description: "Archive Template Plugin Lembaga" for view content post profile
 */
 
 get_header(); ?>
