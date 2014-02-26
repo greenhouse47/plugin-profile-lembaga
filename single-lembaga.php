@@ -1,21 +1,21 @@
 <?php
 /*
-* Single Profile Pengurus
+* Single Template Profile Lembaga
 * Author: Albert Sukmono
-* Description: Template Plugin "Lembaga" for view content post profile
+* Description: "Template Plugin Lembaga" for view content post profile
 */
 
 get_header(); ?>
+
 <div class="container">
         <div class="row">
             <div class="span12">
-                <?php if (function_exists('bootstrapwp_breadcrumbs')) {
-                bootstrapwp_breadcrumbs();
+                <?php if (function_exists('bootstrapwp_breadcrumbs_staff')) {
+                bootstrapwp_breadcrumbs_staff();
                 } ?>
             </div><!--/.span12 -->
         </div><!--/.row -->
 		<div class="row content">
-		<?php $post_id = get_the_ID('lembaga'); ?>
 		<!-- Cycle through all posts -->
 		<?php while ( have_posts() ) : the_post(); ?>
 			<!-- Display featured image in right-aligned floating div -->
@@ -27,7 +27,7 @@ get_header(); ?>
 				<div class="deskripsi-profile"><?php the_title(); ?></div>
 				<table>
 					<tr>
-						<td style="width: 47%">Nama</td>
+						<td style="width: 47%">Nama Ketua</td>
 						<td>: <?php echo esc_html( get_post_meta( get_the_ID(), 'nama', true ) ); ?></td>
 					</tr>
 					<tr>
@@ -51,15 +51,11 @@ get_header(); ?>
 						<td>: <?php echo esc_html( get_post_meta( get_the_ID(), 'komisariat', true ) ); ?></td>
 					</tr>
 					<tr>
-						<td style="width: 47%">Kota Asal</td>
-						<td>: <?php echo esc_html( get_post_meta( get_the_ID(), 'kota_asal', true ) ); ?></td>
-					</tr>
-					<tr>
-						<td style="width: 47%">Alamat Sekarang</td>
+						<td style="width: 47%">Alamat Kantor</td>
 						<td>: <?php echo esc_html( get_post_meta( get_the_ID(), 'alamat_sekarang', true ) ); ?></td>
 					</tr>
 					<tr>
-						<td style="width: 47%">Kontak Person</td>
+						<td style="width: 47%">Kontak/ Telp</td>
 						<td>: <?php echo esc_html( get_post_meta( get_the_ID(), 'kontak', true ) ); ?></td>
 					</tr>
 					<tr>
